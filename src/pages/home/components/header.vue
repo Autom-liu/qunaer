@@ -23,11 +23,11 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/assets/style/varibles.styl';
 .header
-	display: flex
-	height: 0.86rem
-	line-height: .86rem
-	background-color: $bgColor
-	color: #fff
+	display flex
+	height 0.86rem
+	line-height .86rem
+	background-color $bgColor
+	color #fff
 	.header-left
 		float: left
 		width: 0.64rem

@@ -21,22 +21,12 @@
 <script>
 export default {
 	name: 'HomeRecommend',
+	props: {
+		recommendList: [],
+	},
 	data() {
 		return {
-			recommendList: [
-				{
-					id: 1,
-					imgUrl: 'http://img1.qunarzz.com/sight/p0/1709/41/411f234d79457081a3.img.jpg_200x200_ea02ef99.jpg',
-					title: '长隆野生动物世界',
-					desc: '广州市4A级景区',
-				},
-				{
-					id: 2,
-					imgUrl: 'http://img1.qunarzz.com/sight/p0/1709/41/411f234d79457081a3.img.jpg_200x200_ea02ef99.jpg',
-					title: '长隆野生动物世界',
-					desc: '广州市4A级景区',
-				},
-			],
+
 		};
 	},
 };

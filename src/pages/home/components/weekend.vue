@@ -4,7 +4,7 @@
 			周末去哪儿
 		</div>
 		<ul>
-			<li class="item" v-for="item of recommendList" :key="item.id">
+			<li class="item" v-for="item of weekendList" :key="item.id">
 				<div class="item-img-box">
 					<img class="item-img" :src="item.imgUrl" alt="">
 				</div>
@@ -20,22 +20,12 @@
 <script>
 export default {
 	name: 'HomeWeekend',
+	props: {
+		weekendList: Array,
+	},
 	data() {
 		return {
-			recommendList: [
-				{
-					id: 1,
-					imgUrl: 'http://img1.qunarzz.com/sight/source/1505/92/580e9ea4f37a1b.jpg_r_640x214_72112761.jpg',
-					title: '长隆野生动物世界',
-					desc: '广州市4A级景区',
-				},
-				{
-					id: 2,
-					imgUrl: 'http://img1.qunarzz.com/sight/source/1505/92/580e9ea4f37a1b.jpg_r_640x214_72112761.jpg',
-					title: '长隆野生动物世界',
-					desc: '广州市4A级景区',
-				},
-			],
+
 		};
 	},
 };

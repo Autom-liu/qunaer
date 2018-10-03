@@ -5,8 +5,8 @@
 				<div class="icons">
 					<div class="icon" v-for="item of page" :key="item.id">
 						<div class="icon-box">
-							<img class="icon-img" :src="item.url" alt="">
-							<p class="icon-title">{{item.title}}</p>
+							<img class="icon-img" :src="item.imgUrl" alt="">
+							<p class="icon-title">{{item.desc}}</p>
 						</div>
 					</div>
 				</div>
@@ -20,58 +20,14 @@
 <script>
 export default {
 	name: 'HomeIcon',
+	props: {
+		iconList: Array,
+	},
 	data() {
 		return {
 			swiperOption: {
 
 			},
-			iconList: [
-				{
-					id: 1,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-				{
-					id: 2,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-				{
-					id: 3,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-				{
-					id: 4,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-				{
-					id: 5,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-				{
-					id: 6,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点热门景点热门景点热门景点热门景点热门景点热门景点',
-				},
-				{
-					id: 7,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-				{
-					id: 8,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-				{
-					id: 9,
-					url: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-					title: '热门景点',
-				},
-			],
 		};
 	},
 	computed: {

@@ -45,14 +45,13 @@ export default {
 		color $darkFont
 		background-color #eee
 	.item
-		height 3.6rem
 		padding .16rem
 		overflow hidden
 		.item-img-box
 			width 100%
 			height 0
 			overflow hidden
-			padding-bottom 33.4%
+			padding-bottom 37.9%
 			.item-img
 				width 100%
 		.item-bottom

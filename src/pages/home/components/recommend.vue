@@ -22,7 +22,7 @@
 export default {
 	name: 'HomeRecommend',
 	props: {
-		recommendList: [],
+		recommendList: Array,
 	},
 	data() {
 		return {

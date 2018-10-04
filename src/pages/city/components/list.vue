@@ -1,66 +1,73 @@
 <template>
-	<div class="wrapper">
-		<div class="area">
-			<div class="title border-topbottom">当前城市</div>
-			<div class="area-box">
-				<ul class="area-tags">
-					<li class="area-tag">北京</li>
-					<li class="area-tag">北京</li>
-					<li class="area-tag">北京</li>
-					<li class="area-tag">北京</li>
-				</ul>
+	<div class="wrapper" ref="wrapper">
+		<div>
+			<div class="area">
+				<div class="title border-topbottom">当前城市</div>
+				<div class="area-box">
+					<ul class="area-tags">
+						<li class="area-tag">北京</li>
+						<li class="area-tag">北京</li>
+						<li class="area-tag">北京</li>
+						<li class="area-tag">北京</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="area">
-			<div class="title border-topbottom">热门城市</div>
-			<div class="area-box">
-				<ul class="area-tags">
-					<li class="area-tag">北京</li>
-					<li class="area-tag">北京</li>
-					<li class="area-tag">北京</li>
-					<li class="area-tag">北京</li>
-				</ul>
+			<div class="area">
+				<div class="title border-topbottom">热门城市</div>
+				<div class="area-box">
+					<ul class="area-tags">
+						<li class="area-tag">北京</li>
+						<li class="area-tag">北京</li>
+						<li class="area-tag">北京</li>
+						<li class="area-tag">北京</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="area">
-			<div class="title">A</div>
-			<div class="area-box">
-				<ul>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-				</ul>
+			<div class="area">
+				<div class="title">A</div>
+				<div class="area-box">
+					<ul>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="area">
-			<div class="title border">A</div>
-			<div class="area-box">
-				<ul>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-				</ul>
+			<div class="area">
+				<div class="title border">A</div>
+				<div class="area-box">
+					<ul>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="area">
-			<div class="title">A</div>
-			<div class="area-box">
-				<ul>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-					<li class="area-item border-bottom">北京</li>
-				</ul>
+			<div class="area">
+				<div class="title">A</div>
+				<div class="area-box">
+					<ul>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+						<li class="area-item border-bottom">北京</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import BScroll from 'better-scroll';
+
 export default {
 	name: 'cityList',
+	mounted() {
+		this.scroll = new BScroll(this.$refs.wrapper);
+	},
 };
 </script>
 

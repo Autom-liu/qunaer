@@ -60,7 +60,6 @@ export default {
 			.then(data => this.handleData(data));
 		},
 		handleData(data) {
-			console.log(data);
 			this.bannerImg = data.bannerImg;
 			this.sightName = data.sightName;
 			this.categoryList = data.categoryList;

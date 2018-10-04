@@ -17,7 +17,7 @@
 							class="area-tag"
 							v-for="hotCity of hotCities"
 							:key="hotCity.id"
-							@click="handleClick(hotCity.name)"
+							@touchstart="handleClick(hotCity.name)"
 						>
 							{{hotCity.name}}
 						</li>
@@ -32,7 +32,7 @@
 							class="area-item border-bottom"
 							v-for="city in item"
 							:key="city.id"
-							@click="handleClick(city.name)"
+							@touchstart="handleClick(city.name)"
 						>
 							{{city.name}}
 						</li>

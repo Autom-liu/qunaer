@@ -7,7 +7,18 @@
 			</router-link>
 		</div>
 		<div class="search">
-			<input class="search-input" type="text" placeholder="请输入城市名或拼音" />
+			<input
+				class="search-input" type="text"
+				placeholder="请输入城市名或拼音"
+				v-model="keyword"
+			/>
+		</div>
+		<div class="search-list">
+			<ul>
+				<li class="list-item border-bottom" v-for="city of cityList" :key="city.id">
+					{{city.name}}
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
@@ -15,11 +26,45 @@
 <script>
 export default {
 	name: 'cityHeader',
+	props: {
+		cities: Array,
+	},
+	data() {
+		return {
+			keyword: '',
+			cityList: [],
+			timer: null,
+		};
+	},
+	methods: {
+
+	},
+	watch: {
+		keyword(val) {
+			if (this.timer) {
+				clearTimeout(this.timer);
+			}
+			this.timer = setTimeout(() => {
+				this.cityList = [];
+				for (const index of Object.keys(this.cities)) {
+					this.cities[index].forEach((city) => {
+						if (city.spell.indexOf(val) > -1 || city.name.indexOf(val) > -1) {
+							this.cityList.push(city);
+						}
+					});
+				}
+			});
+		},
+	},
 };
 </script>
 
 <style lang="stylus" scoped>
 @import '~@/assets/style/varibles.styl';
+
+.border-bottom
+	&:before
+		border-color $borderColor
 
 .wrapper
 	.header
@@ -48,4 +93,18 @@ export default {
 			border-radius .2rem
 			text-align center
 			color #666
+	.search-list
+		z-index 1
+		position absolute
+		overflow hidden
+		top 1.58rem
+		bottom 0
+		left 0
+		right 0
+		background-color #eee;
+		li.list-item
+			height .76rem
+			line-height .76rem
+			text-indent 1em
+			background-color #fff
 </style>

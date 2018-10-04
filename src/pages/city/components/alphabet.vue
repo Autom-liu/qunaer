@@ -1,12 +1,18 @@
 <template>
-	<div class="wrapper">
+	<div class="wrapper"
+		@touchstart="handleTouchStart"
+		@touchmove="handleTouchMove"
+		@touchend="handleTouchEnd"
+	>
 		<ul>
 			<li
-				class="alphabet"
-				v-for="(item, alphabet) of cities"
-				:key="alphabet"
+				:class="{'alphabet': true, 'active': letter === curLetter}"
+				v-for="(letter, index) of letters"
+				:key="index"
+				:ref="letter"
+				@click="handleClick"
 			>
-				{{alphabet}}
+				{{letter}}
 			</li>
 		</ul>
 	</div>
@@ -15,8 +21,51 @@
 <script>
 export default {
 	name: 'cityAlphabet',
-		props: {
+	props: {
 		cities: Object,
+		propsLetter: String,
+	},
+	data() {
+		return {
+			touchStutus: false,
+			curLetter: this.propsLetter,
+		};
+	},
+	methods: {
+		handleClick(e) {
+			this.curLetter = e.target.innerText;
+		},
+		handleTouchStart(e) {
+			this.touchStutus = true;
+		},
+		handleTouchMove(e) {
+			if (this.touchStutus) {
+				const startY = this.$refs.A[0].offsetTop;
+				const endY = e.touches[0].clientY - 79;
+				if (endY > startY) {
+					const index = Math.floor((endY - startY) / 20);
+					this.curLetter = this.letters[index];
+				}
+			}
+		},
+		handleTouchEnd(e) {
+			this.touchStutus = false;
+		},
+	},
+	computed: {
+		letters() {
+			return Object.keys(this.cities);
+		},
+	},
+	watch: {
+		propsLetter(val) {
+			this.curLetter = val;
+		},
+		curLetter(val) {
+			if (this.propsLetter !== val) {
+				this.$emit('alphabet-change', this.curLetter);
+			}
+		},
 	},
 };
 </script>
@@ -37,5 +86,7 @@ export default {
 		color $bgColor
 		line-height .4rem
 		text-align center
+	li.alphabet.active
+		color #ff5348
 </style>
 

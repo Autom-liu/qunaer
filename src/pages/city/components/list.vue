@@ -23,13 +23,14 @@
 					</ul>
 				</div>
 			</div>
-			<div class="area" v-for="(item, key) in cities" :key="key">
+			<div class="area" v-for="(item, key) in cities" :key="key" :ref="key">
 				<div class="title">{{key}}</div>
 				<div class="area-box">
 					<ul>
 						<li
 							class="area-item border-bottom"
-							v-for="city in item" :key="city.id"
+							v-for="city in item"
+							:key="city.id"
 						>
 							{{city.name}}
 						</li>
@@ -48,9 +49,53 @@ export default {
 	props: {
 		cities: Object,
 		hotCities: Array,
+		stepLetter: String,
+	},
+	data() {
+		return {
+			listHeight: {},
+			scrollY: 0,
+		};
+	},
+	methods: {
+		initHeight() {
+			const alphabet = Object.keys(this.cities);
+			for (const key of alphabet) {
+				const element = this.$refs[key][0];
+				this.listHeight[key] = element.offsetTop;
+			}
+		},
 	},
 	mounted() {
-		this.scroll = new BScroll(this.$refs.wrapper);
+		this.scroll = new BScroll(this.$refs.wrapper, {
+			probeType: 3,
+		});
+		this.scroll.on('scroll', (pos) => {
+			this.scrollY = Math.abs(Math.round(pos.y));
+		});
+	},
+	updated() {
+		this.initHeight();
+	},
+	computed: {
+		curLetter() {
+			let res = 'A';
+			for (const key in this.listHeight) {
+				if (this.scrollY > this.listHeight[key]) {
+					res = key;
+				}
+			}
+			return res;
+		},
+	},
+	watch: {
+		stepLetter() {
+			const element = this.$refs[this.stepLetter][0];
+			this.scroll.scrollToElement(element);
+		},
+		scrollY(val) {
+			this.$emit('scrolling', this.curLetter);
+		},
 	},
 };
 </script>

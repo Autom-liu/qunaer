@@ -1,8 +1,17 @@
 <template>
 	<div>
 		<city-header></city-header>
-		<city-list :cities="cities" :hot-cities="hotCities"></city-list>
-		<city-alphabet :cities="cities"></city-alphabet>
+		<city-list
+			:cities="cities"
+			:hot-cities="hotCities"
+			:step-letter="stepLetter"
+			@scrolling="proxycurLetter"
+		></city-list>
+		<city-alphabet
+			:cities="cities"
+			:props-letter="curLetter"
+			@alphabet-change="alphabetChange"
+		></city-alphabet>
 	</div>
 </template>
 
@@ -23,6 +32,8 @@ export default {
 		return {
 			cities: {},
 			hotCities: [],
+			curLetter: 'A',
+			stepLetter: 'A',
 		};
 	},
 	methods: {
@@ -33,12 +44,19 @@ export default {
 				.then(data => this.handleData(data));
 		},
 		handleData(data) {
-			console.log(data);
 			this.cities = data.cities;
 			this.hotCities = data.hotCities;
 		},
 		handleError(msg) {
 
+		},
+		alphabetChange(alphabet) {
+			this.curLetter = alphabet;
+			this.stepLetter = alphabet;
+		},
+		proxycurLetter(letter) {
+			// console.log(letter);
+			this.curLetter = letter;
 		},
 	},
 	mounted() {

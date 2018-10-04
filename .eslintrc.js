@@ -53,6 +53,7 @@ module.exports = {
 				"checkLoops": false
 			}
 		],
+		"no-restricted-syntax": 0,
 		"object-shorthand": 0,
 		"prefer-destructuring": 0,
 		"no-unused-vars":[2, { "args": "none" }],

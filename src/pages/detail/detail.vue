@@ -2,18 +2,21 @@
 	<div class="wrapper">
 		<detail-banner @click.native="bannerClick"></detail-banner>
 		<gallary :imgs="imgs" v-show="showGallary" @click.native="bannerClick"></gallary>
+		<detail-header></detail-header>
 	</div>
 </template>
 
 <script>
 import gallary from '@/components/gallary/gallary';
 import detailBanner from './components/banner';
+import detailHeader from './components/header';
 
 export default {
 	name: 'detail',
 	components: {
 		detailBanner,
 		gallary,
+		detailHeader,
 	},
 	data() {
 		return {

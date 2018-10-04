@@ -13,7 +13,7 @@
 				v-model="keyword"
 			/>
 		</div>
-		<div class="search-list">
+		<div class="search-list" ref="search">
 			<ul>
 				<li class="list-item border-bottom" v-for="city of cityList" :key="city.id">
 					{{city.name}}
@@ -24,10 +24,11 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll';
 export default {
 	name: 'cityHeader',
 	props: {
-		cities: Array,
+		cities: Object,
 	},
 	data() {
 		return {
@@ -36,6 +37,9 @@ export default {
 			timer: null,
 		};
 	},
+	mounted() {
+		this.scroll = new BScroll(this.$refs.search);
+	},
 	methods: {
 
 	},
@@ -43,6 +47,10 @@ export default {
 		keyword(val) {
 			if (this.timer) {
 				clearTimeout(this.timer);
+			}
+			if (!val) {
+				this.cityList = [];
+				return;
 			}
 			this.timer = setTimeout(() => {
 				this.cityList = [];

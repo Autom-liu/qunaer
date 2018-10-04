@@ -5,7 +5,7 @@
 				<div class="title border-topbottom">当前城市</div>
 				<div class="area-box">
 					<ul class="area-tags">
-						<li class="area-tag">北京</li>
+						<li class="area-tag">{{this.$store.state.city}}</li>
 					</ul>
 				</div>
 			</div>
@@ -17,6 +17,7 @@
 							class="area-tag"
 							v-for="hotCity of hotCities"
 							:key="hotCity.id"
+							@click="handleClick(hotCity.name)"
 						>
 							{{hotCity.name}}
 						</li>
@@ -31,6 +32,7 @@
 							class="area-item border-bottom"
 							v-for="city in item"
 							:key="city.id"
+							@click="handleClick(city.name)"
 						>
 							{{city.name}}
 						</li>
@@ -62,8 +64,12 @@ export default {
 			const alphabet = Object.keys(this.cities);
 			for (const key of alphabet) {
 				const element = this.$refs[key][0];
-				this.listHeight[key] = element.offsetTop;
+				this.listHeight[key] = element ? element.offsetTop : 9999;
 			}
+		},
+		handleClick(city) {
+			this.$store.dispatch('changeCity', city);
+			this.$router.push('/');
 		},
 	},
 	mounted() {

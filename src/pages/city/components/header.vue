@@ -13,11 +13,12 @@
 				v-model="keyword"
 			/>
 		</div>
-		<div class="search-list" ref="search">
+		<div class="search-list" ref="search" v-show="keyword">
 			<ul>
 				<li class="list-item border-bottom" v-for="city of cityList" :key="city.id">
 					{{city.name}}
 				</li>
+				<li class="list-item border-bottom" v-show="isNoData">没有找到匹配数据</li>
 			</ul>
 		</div>
 	</div>
@@ -42,6 +43,11 @@ export default {
 	},
 	methods: {
 
+	},
+	computed: {
+		isNoData() {
+			return !this.cityList.length;
+		},
 	},
 	watch: {
 		keyword(val) {

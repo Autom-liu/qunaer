@@ -5,7 +5,9 @@
 			:banner-img="bannerImg"
 			:sight-name="sightName"
 		></detail-banner>
-		<gallary :imgs="imgs" v-show="showGallary" @click.native="bannerClick"></gallary>
+		<fade>
+			<gallary :imgs="imgs" v-show="showGallary" @click.native="bannerClick"></gallary>
+		</fade>
 		<detail-header></detail-header>
 		<detail-list :category-list="categoryList"></detail-list>
 	</div>
@@ -13,6 +15,7 @@
 
 <script>
 import gallary from '@/components/gallary/gallary';
+import fade from '@/components/fade/fade';
 import axios from 'axios';
 import detailBanner from './components/banner';
 import detailHeader from './components/header';
@@ -25,6 +28,7 @@ export default {
 		gallary,
 		detailHeader,
 		detailList,
+		fade,
 	},
 	data() {
 		return {

@@ -9,7 +9,6 @@
 				<i class="iconfont icon-back">&#xe624;</i>
 			</router-link>
 		</div>
-		<div class="test"></div>
 	</div>
 </template>
 
@@ -46,9 +45,6 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/assets/style/varibles.styl';
 
-.test
-	height 50rem
-
 .header-abs
 	position absolute
 	top .2rem
@@ -65,6 +61,7 @@ export default {
 
 .header-fixed
 	position fixed
+	z-index 9
 	top 0
 	left 0
 	width 100%

@@ -1,9 +1,9 @@
 <template>
 	<div class="wrapper">
 		<div class="banner">
-			<img class="banner-img" src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_600x330_f922b488.jpg" alt="">
+			<img class="banner-img" :src="bannerImg" alt="">
 			<div class="banner-info">
-				<p class="banner-title">故宫AAAAA级景区</p>
+				<p class="banner-title">{{sightName}}</p>
 				<p class="banner-number">
 					<i class="iconfont icon-pic">&#xe62c;</i>
 					6
@@ -16,6 +16,10 @@
 <script>
 export default {
 	name: 'detail',
+	props: {
+		bannerImg: String,
+		sightName: String,
+	},
 };
 </script>
 

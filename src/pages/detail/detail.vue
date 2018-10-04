@@ -1,15 +1,22 @@
 <template>
 	<div class="wrapper">
-		<detail-banner @click.native="bannerClick"></detail-banner>
+		<detail-banner
+			@click.native="bannerClick"
+			:banner-img="bannerImg"
+			:sight-name="sightName"
+		></detail-banner>
 		<gallary :imgs="imgs" v-show="showGallary" @click.native="bannerClick"></gallary>
 		<detail-header></detail-header>
+		<detail-list :category-list="categoryList"></detail-list>
 	</div>
 </template>
 
 <script>
 import gallary from '@/components/gallary/gallary';
+import axios from 'axios';
 import detailBanner from './components/banner';
 import detailHeader from './components/header';
+import detailList from './components/list';
 
 export default {
 	name: 'detail',
@@ -17,6 +24,7 @@ export default {
 		detailBanner,
 		gallary,
 		detailHeader,
+		detailList,
 	},
 	data() {
 		return {
@@ -31,12 +39,31 @@ export default {
 				},
 			],
 			showGallary: false,
+			bannerImg: '',
+			sightName: '',
+			categoryList: [],
 		};
 	},
 	methods: {
 		bannerClick() {
 			this.showGallary = !this.showGallary;
 		},
+		getDetailData() {
+			axios.get('/api/travel/detail.json', {
+				params: this.$route.params.id,
+			}).then(res => res.data)
+			.then(data => (data.ret ? data.data : this.handleError(data.msg)))
+			.then(data => this.handleData(data));
+		},
+		handleData(data) {
+			console.log(data);
+			this.bannerImg = data.bannerImg;
+			this.sightName = data.sightName;
+			this.categoryList = data.categoryList;
+		},
+	},
+	mounted() {
+		this.getDetailData();
 	},
 };
 </script>

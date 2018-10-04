@@ -7,10 +7,12 @@
 			<i class="iconfont icon-serach">&#xe632;</i>
 			输入城市/景点
 		</div>
-		<div class="header-right">
-			{{city}}
-			<i class="iconfont icon-arrow">&#xe62d;</i>
-		</div>
+		<router-link to="/city">
+			<div class="header-right">
+				{{city}}
+				<i class="iconfont icon-arrow">&#xe62d;</i>
+			</div>
+		</router-link>
 	</div>
 </template>
 
@@ -30,8 +32,8 @@ export default {
 @import '~@/assets/style/varibles.styl';
 .header
 	display flex
-	height 0.86rem
-	line-height .86rem
+	height $headerHeight
+	line-height $headerHeight
 	background-color $bgColor
 	color #fff
 	.header-left
@@ -54,5 +56,6 @@ export default {
 		float: right
 		width: 1.24rem
 		text-align: center
+		color #fff
 
 </style>

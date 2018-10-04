@@ -1,13 +1,13 @@
 <template>
 	<div class="wrapper">
 		<ul>
-			<li class="alphabet">A</li>
-			<li class="alphabet">A</li>
-			<li class="alphabet">A</li>
-			<li class="alphabet">A</li>
-			<li class="alphabet">A</li>
-			<li class="alphabet">A</li>
-			<li class="alphabet">A</li>
+			<li
+				class="alphabet"
+				v-for="(item, alphabet) of cities"
+				:key="alphabet"
+			>
+				{{alphabet}}
+			</li>
 		</ul>
 	</div>
 </template>
@@ -15,6 +15,9 @@
 <script>
 export default {
 	name: 'cityAlphabet',
+		props: {
+		cities: Object,
+	},
 };
 </script>
 

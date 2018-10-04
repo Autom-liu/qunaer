@@ -36,7 +36,7 @@ export default {
 	},
 	methods: {
 		getHomeInfo() {
-			axios.get('/api/index.json')
+			axios.get('/api/travel/index.json')
 				.then(res => res.data)
 				.then(data => data.data)
 				.then(data => this.handleData(data));

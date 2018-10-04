@@ -6,9 +6,6 @@
 				<div class="area-box">
 					<ul class="area-tags">
 						<li class="area-tag">北京</li>
-						<li class="area-tag">北京</li>
-						<li class="area-tag">北京</li>
-						<li class="area-tag">北京</li>
 					</ul>
 				</div>
 			</div>
@@ -16,43 +13,26 @@
 				<div class="title border-topbottom">热门城市</div>
 				<div class="area-box">
 					<ul class="area-tags">
-						<li class="area-tag">北京</li>
-						<li class="area-tag">北京</li>
-						<li class="area-tag">北京</li>
-						<li class="area-tag">北京</li>
+						<li
+							class="area-tag"
+							v-for="hotCity of hotCities"
+							:key="hotCity.id"
+						>
+							{{hotCity.name}}
+						</li>
 					</ul>
 				</div>
 			</div>
-			<div class="area">
-				<div class="title">A</div>
+			<div class="area" v-for="(item, key) in cities" :key="key">
+				<div class="title">{{key}}</div>
 				<div class="area-box">
 					<ul>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-					</ul>
-				</div>
-			</div>
-			<div class="area">
-				<div class="title border">A</div>
-				<div class="area-box">
-					<ul>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-					</ul>
-				</div>
-			</div>
-			<div class="area">
-				<div class="title">A</div>
-				<div class="area-box">
-					<ul>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
-						<li class="area-item border-bottom">北京</li>
+						<li
+							class="area-item border-bottom"
+							v-for="city in item" :key="city.id"
+						>
+							{{city.name}}
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -65,6 +45,10 @@ import BScroll from 'better-scroll';
 
 export default {
 	name: 'cityList',
+	props: {
+		cities: Object,
+		hotCities: Array,
+	},
 	mounted() {
 		this.scroll = new BScroll(this.$refs.wrapper);
 	},

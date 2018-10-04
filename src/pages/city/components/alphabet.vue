@@ -29,7 +29,12 @@ export default {
 		return {
 			touchStutus: false,
 			curLetter: this.propsLetter,
+			startY: 0,
+			timer: 0,
 		};
+	},
+	updated() {
+		this.startY = this.$refs.A[0].offsetTop;
 	},
 	methods: {
 		handleClick(e) {
@@ -40,12 +45,16 @@ export default {
 		},
 		handleTouchMove(e) {
 			if (this.touchStutus) {
-				const startY = this.$refs.A[0].offsetTop;
-				const endY = e.touches[0].clientY - 79;
-				if (endY > startY) {
-					const index = Math.floor((endY - startY) / 20);
-					this.curLetter = this.letters[index];
+				if (this.timer) {
+					clearTimeout(this.timer);
 				}
+				this.timer = setTimeout(() => {
+					const endY = e.touches[0].clientY - 79;
+					if (endY > this.startY) {
+						const index = Math.floor((endY - this.startY) / 20);
+						this.curLetter = this.letters[index];
+					}
+				}, 16);
 			}
 		},
 		handleTouchEnd(e) {

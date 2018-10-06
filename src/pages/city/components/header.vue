@@ -46,7 +46,9 @@ export default {
 		};
 	},
 	mounted() {
-		this.scroll = new BScroll(this.$refs.search);
+		this.scroll = new BScroll(this.$refs.search, {
+			click: true,
+		});
 	},
 	methods: {
 		handleClick(city) {

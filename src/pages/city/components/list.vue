@@ -17,7 +17,7 @@
 							class="area-tag"
 							v-for="hotCity of hotCities"
 							:key="hotCity.id"
-							@touchstart="handleClick(hotCity.name)"
+							@click="handleClick(hotCity.name)"
 						>
 							{{hotCity.name}}
 						</li>
@@ -77,6 +77,7 @@ export default {
 	mounted() {
 		this.scroll = new BScroll(this.$refs.wrapper, {
 			probeType: 3,
+			click: true,
 		});
 		this.scroll.on('scroll', (pos) => {
 			this.scrollY = Math.abs(Math.round(pos.y));

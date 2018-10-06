@@ -32,7 +32,7 @@
 							class="area-item border-bottom"
 							v-for="city in item"
 							:key="city.id"
-							@touchstart="handleClick(city.name)"
+							@click="handleClick(city.name)"
 						>
 							{{city.name}}
 						</li>
@@ -74,7 +74,7 @@ export default {
 		},
 		...mapMutations(['changeCity']),
 	},
-	mounted() {
+	activated() {
 		this.scroll = new BScroll(this.$refs.wrapper, {
 			probeType: 3,
 			click: true,
